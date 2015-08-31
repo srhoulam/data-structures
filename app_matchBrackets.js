@@ -15,7 +15,6 @@ var expressions = 0,
 	badExpressions = 0;
 
 // BEGIN read from console
-console.log("Enter your text and press Ctrl+D when finished:\n");
 process.stdin.setEncoding('utf8');
 process.stdin.on('data', processInput);
 process.stdin.on('end', printSummary);

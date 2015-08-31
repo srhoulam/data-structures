@@ -1,10 +1,11 @@
 'use strict';
 
-var cproc = require('child_process');
+var cproc = require('child_process'),
+	path = require('path');
 
 describe("postfix expression evaluator", function() {
 	beforeEach(function() {
-		this.pf = cproc.spawn('node', ['./app_postfixNotation.js']);
+		this.pf = cproc.spawn('node', [path.join(__dirname, '..', 'app_postfixNotation.js')]);
 		this.pf.stdout.setEncoding('utf8');
 	});
 

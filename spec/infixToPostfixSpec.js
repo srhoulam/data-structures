@@ -1,13 +1,14 @@
 'use strict';
 
-var cproc = require('child_process');
+var cproc = require('child_process'),
+	path = require('path');
 
 describe("infix to postfix converter", function() {
 	beforeEach(function() {
-		this.pf = cproc.spawn('node', ['./app_postfixNotation.js']);
+		this.pf = cproc.spawn('node', [path.join(__dirname, '..', 'app_postfixNotation.js')]);
 		this.pf.stdout.setEncoding('utf8');
 
-		this.ifToPf = cproc.spawn('node', ['./project_infixToPostfix.js']);
+		this.ifToPf = cproc.spawn('node', [path.join(__dirname, '..', 'project_infixToPostfix.js')]);
 		this.ifToPf.stdout.pipe(this.pf.stdin);
 	});
 
