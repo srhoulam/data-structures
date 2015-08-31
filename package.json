@@ -1,0 +1,15 @@
+{
+  "name": "datastruct",
+  "version": "1.0.0",
+  "description": "My code from following along with Object-Oriented Data Structures by Nell Dale",
+  "main": "driver_SortedStringList.js",
+  "dependencies": {
+    "deepcopy": "^0.5.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Saad Rhoulam",
+  "license": "null"
+}
