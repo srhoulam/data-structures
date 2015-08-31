@@ -137,10 +137,5 @@ describe("sorted list", function() {
 			expect(sl.isFull()).toBe(false);
 			expect(sl.contains({ 'c' : 1 })).toBe(false);
 		});
-
-/*		it("", function() {});
-		it("", function() {});
-		it("", function() {});
-		it("", function() {});*/
 	});
 });
