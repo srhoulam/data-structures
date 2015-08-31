@@ -28,7 +28,23 @@ function List(maxItems, compare) {
 	}
 
 	if(!(compare instanceof Function)) {
-		throw new TypeError("List: `compare` is not a function.");
+		if(compare === undefined) {
+			compare = function(a, b) {
+				// good default for unsorted list
+				var result;
+				if(a instanceof Object || b instanceof Object) {
+					result = JSON.stringify(a) === JSON.stringify(b);
+				} else {
+					result = a === b;
+				}
+
+				return result ?
+					0 :
+					1;
+			};
+		} else {
+			throw new TypeError("List: `compare` is not a function.");
+		}
 	}
 
 	var length = maxItems || 100;
