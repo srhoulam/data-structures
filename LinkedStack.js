@@ -50,7 +50,7 @@ var LinkedStack = (function linkedStackIIFE() {
 		return this.top.item;
 	};
 	LinkedStack.prototype.isEmpty = function linkedStackIsEmpty() {
-		return this.top ? false : true;
+		return this.top == null;
 	};
 
 	return LinkedStack;
