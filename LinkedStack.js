@@ -43,7 +43,7 @@ var LinkedStack = (function linkedStackIIFE() {
 		return result.item;
 	};
 	LinkedStack.prototype.peek = function linkedStackPeek() {
-		if(!this.top) {
+		if(this.isEmpty()) {
 			throw new UnderflowError("LinkedStack: peek attempted on empty stack.");
 		}
 
