@@ -34,7 +34,7 @@ var LinkedStack = (function linkedStackIIFE() {
 		this.top = itemNode;
 	};
 	LinkedStack.prototype.pop = function linkedStackPop() {
-		if(!this.top) {
+		if(this.isEmpty()) {
 			throw new UnderflowError("LinkedStack: pop attempted on empty stack.");
 		}
 
