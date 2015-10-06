@@ -18,7 +18,7 @@ function Queue(cap) {
 	}
 
 	this.capacity = cap,
-	this.array = new Array(cap),
+	this.array = new Array(this.capacity),
 	this.offset = 0,
 	this.numItems = 0;
 }
