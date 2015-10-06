@@ -52,14 +52,14 @@ describe("stack", function() {
 	// Nell Dale, chapter 4, exercise 10, part b
 	it("should allow inspection", function() {
 		for(var index=0; index < 10; index++) {
-			index !== 0 && expect(s.inspect(1)).toBe(index - 1);
+			index !== 0 && expect(s.inspector(1)).toBe(index - 1);
 
 			s.push(index);
-			expect(s.inspect(1)).toBe(index);
+			expect(s.inspector(1)).toBe(index);
 		}
 
 		for(var index=0; index < 10; index++) {
-			expect(s.inspect(index + 1)).toBe(9 - index);
+			expect(s.inspector(index + 1)).toBe(9 - index);
 		}
 	});
 });
