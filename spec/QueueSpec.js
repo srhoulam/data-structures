@@ -2,6 +2,10 @@
 
 var Queue = require('../Queue');
 
+var QueueErrors = require('../QueueErrors'),
+	UnderflowError = QueueErrors.Underflow,
+	OverflowError = QueueErrors.Overflow;
+
 describe("queue, basic operations", function() {
 	var q = new Queue(10);
 
@@ -20,7 +24,7 @@ describe("queue, basic operations", function() {
 			q.enq('fail');
 			fail("Didn't throw.");
 		} catch(e) {
-			expect(e.message).toBe("Queue overflow.");
+			expect(e instanceof OverflowError).toBe(true);
 		}
 	});
 
@@ -39,7 +43,7 @@ describe("queue, basic operations", function() {
 			q.deq();
 			fail("Didn't throw.");
 		} catch(e) {
-			expect(e.message).toBe("Queue underflow.");
+			expect(e instanceof UnderflowError).toBe(true);
 		}
 	});
 });
