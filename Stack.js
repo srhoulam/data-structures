@@ -18,7 +18,7 @@ function Stack(maxHeight) {
 	}
 
 	this.maxHeight = maxHeight || 100;
-	this.array = new Array(maxHeight);
+	this.array = new Array(this.maxHeight);
 	this.height = 0;
 }
 
@@ -52,7 +52,7 @@ Stack.prototype.pop = function() {
 	return returnValue;
 };
 //Nell Dale, chapter 4, exercise 10
-Stack.prototype.inspect = function(index) {
+Stack.prototype.inspector = function(index) {
 	if(index < 1) {
 		throw new OverflowError("Stack: index out of range.");
 	}
@@ -65,4 +65,3 @@ Stack.prototype.inspect = function(index) {
 };
 
 module.exports = Stack;
-
