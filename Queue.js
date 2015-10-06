@@ -1,5 +1,9 @@
 'use strict';
 
+var QueueErrors = require('./QueueErrors'),
+	UnderflowError = QueueErrors.Underflow,
+	OverflowError = QueueErrors.Overflow;
+
 function Queue(cap) {
 	var globalObject;
 
@@ -21,7 +25,7 @@ function Queue(cap) {
 
 Queue.prototype.enq = function QueueEnq(element) {
 	if(this.numItems === this.capacity) {
-		throw new Error("Queue overflow.");
+		throw new OverflowError("Queue: enqueue attempted on full queue.");
 	}
 
 	var position = (this.offset + this.numItems) % this.capacity;
@@ -33,7 +37,7 @@ Queue.prototype.enq = function QueueEnq(element) {
 
 Queue.prototype.deq = function QueueDeq() {
 	if(this.numItems < 1) {
-		throw new Error("Queue underflow.");
+		throw new UnderflowError("Queue: dequeue attempted on empty queue.");
 	}
 
 	var result = this.array[this.offset];
