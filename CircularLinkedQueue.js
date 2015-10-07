@@ -27,6 +27,18 @@ var CircularLinkedQueue = (function circularLinkedQueueIIFE(){
 	};
 
 	function CircularLinkedQueue() {
+		var globalObject;
+
+		try {
+			globalObject = global;
+		} catch(e) {
+			globalObject = window;
+		}
+
+		if(this === globalObject) {
+			throw new SyntaxError("List: constructor called without the `new` keyword.");
+		}
+
 		this.rear = null;
 	}
 	CircularLinkedQueue.prototype.enq = function circularLinkedQueueEnqueue(item) {

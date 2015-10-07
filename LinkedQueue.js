@@ -27,6 +27,18 @@ var LinkedQueue = (function linkedQueueIIFE(){
 	};
 
 	function LinkedQueue() {
+		var globalObject;
+
+		try {
+			globalObject = global;
+		} catch(e) {
+			globalObject = window;
+		}
+
+		if(this === globalObject) {
+			throw new SyntaxError("List: constructor called without the `new` keyword.");
+		}
+
 		this.head = this.rear = null;
 	}
 	LinkedQueue.prototype.enq = function linkedQueueEnqueue(item) {

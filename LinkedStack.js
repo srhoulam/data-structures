@@ -27,6 +27,18 @@ var LinkedStack = (function linkedStackIIFE() {
 	};
 
 	function LinkedStack() {
+		var globalObject;
+
+		try {
+			globalObject = global;
+		} catch(e) {
+			globalObject = window;
+		}
+
+		if(this === globalObject) {
+			throw new SyntaxError("List: constructor called without the `new` keyword.");
+		}
+
 		this.top = null;
 	}
 	LinkedStack.prototype.push = function linkedStackPush(item) {
