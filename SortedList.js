@@ -84,4 +84,3 @@ function SortedList(maxItems, compare) {
 })();
 
 module.exports = SortedList;
-
