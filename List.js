@@ -79,4 +79,3 @@ List.prototype.getNext = function() {
  */
 
 module.exports = List;
-
