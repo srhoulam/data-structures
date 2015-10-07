@@ -32,7 +32,7 @@ function SortedList(maxItems, compare) {
 			var midpoint = Math.floor((first + last)/2),
 				compareResult = this.compare(item, this.array[midpoint]);
 
-			if(compareResult == 0) {
+			if(compareResult === 0) {
 				found = midpoint;
 			} else if(compareResult < 0) {
 				last = midpoint - 1;
