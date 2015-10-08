@@ -29,7 +29,7 @@ function List(maxItems, compare) {
 
 	if(!(compare instanceof Function)) {
 		if(compare === undefined) {
-			compare = function(a, b) {
+			this.compare = function(a, b) {
 				// good default for unsorted list
 				var result;
 				if(a instanceof Object || b instanceof Object) {
