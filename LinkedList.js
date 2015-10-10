@@ -98,7 +98,7 @@ var LinkedList = (function linkedListIIFE() {
 			this.list = location.next;
 			found = true;
 		}
-		while(!found && location.next) {
+		while(!found && location.next !== null) {
 			if(this.compare(location.next.item, item) === 0) {
 				found = true;
 				location.next = location.next.next;
