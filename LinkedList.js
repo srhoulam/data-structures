@@ -77,13 +77,13 @@ var LinkedList = (function linkedListIIFE() {
 
 		while(!found && location !== null) {
 			if(this.compare(location.item, item) === 0) {
-				found = true;
+				found = copy(location.item);
 			} else {
 				location = location.next;
 			}
 		}
 
-		return copy(location.item);
+		return found;
 	};
 	LinkedList.prototype.delete = function linkedListDelete(item) {
 		if(this.lengthIs() === 0) {
