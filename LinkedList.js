@@ -3,24 +3,43 @@
 var copy = require('deepcopy');
 
 var LinkedList = (function linkedListIIFE() {
-	function LinkedList(cmp) {
+	function LinkedList(compare) {
+		var globalObject;
+
+		try {
+			globalObject = global;
+		} catch(e) {
+			globalObject = window;
+		}
+
+		if(this === globalObject) {
+			throw new SyntaxError("List: constructor called without the `new` keyword.");
+		}
+
+		if(!(compare instanceof Function)) {
+			if(compare === undefined) {
+				compare = function(a, b) {
+					// good default for unsorted list
+					var result;
+					if(a instanceof Object || b instanceof Object) {
+						result = JSON.stringify(a) === JSON.stringify(b);
+					} else {
+						result = a === b;
+					}
+
+					return result ?
+						0 :
+						1;
+				};
+			} else {
+			throw new RangeError("LinkedList: unacceptable `cmp` argument.");
+			}
+		}
+
 		this.list = null;
 		this.numItems = 0;
 		this.currentPos = null;
-
-		if(cmp instanceof Function) {
-			this.compare = cmp;
-		} else if(cmp === undefined) {
-			this.compare = function defaultCompare(a, b) {
-				return a === b ?
-					0 :
-					(a > b ?
-						1 :
-						-1);
-			};
-		} else {
-			throw new RangeError("LinkedList: unacceptable `cmp` argument.");
-		}
+		this.compare = compare;
 	}
 	LinkedList.prototype.isFull = function linkedListIsFull() {
 		return false;
