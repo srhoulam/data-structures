@@ -75,7 +75,7 @@ var LinkedList = (function linkedListIIFE() {
 		var location = this.link;
 		var found = false;
 
-		while(!found) {
+		while(!found && location !== null) {
 			if(this.compare(location.item, item) === 0) {
 				found = true;
 			} else {
