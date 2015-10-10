@@ -39,14 +39,14 @@ var UnsortedLinkedList = (function unsortedLinkedListIIFE() {
 	UnsortedLinkedList.prototype.contains = function unsortedLinkedListContains(item) {
 		var loc = this.list;
 		var found = false;
-		var moreToSearch = loc.next !== null;
+		var moreToSearch = loc !== null;
 
 		while(moreToSearch && !found) {
 			if(this.compare(item, loc.item) === 0) {
 				found = true;
 			} else {
 				loc = loc.next;
-				moreToSearch = loc.next !== null;
+				moreToSearch = loc !== null;
 			}
 		}
 
