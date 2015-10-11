@@ -5,6 +5,9 @@ var copy = require('deepcopy');
 var List = require('./List');
 
 function SortedList(maxItems, compare) {
+	// user is responsible for providing a good `compare` method
+		// w.r.t. the items that will be placed in the list
+
 	List.call(this, maxItems, compare); // super
 }
 
