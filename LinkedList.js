@@ -32,7 +32,7 @@ var LinkedList = (function linkedListIIFE() {
 						1;
 				};
 			} else {
-			throw new RangeError("LinkedList: unacceptable `cmp` argument.");
+				throw new RangeError("LinkedList: unacceptable `cmp` argument.");
 			}
 		}
 
