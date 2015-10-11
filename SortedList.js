@@ -4,11 +4,24 @@ var copy = require('deepcopy');
 
 var List = require('./List');
 
-function SortedList(maxItems, compare) {
-	// user is responsible for providing a good `compare` method
-		// w.r.t. the items that will be placed in the list
+function defaultCompare(a, b) {
+	var result = null;
+	var aString = JSON.stringify(a),
+		bString = JSON.stringify(b);
 
-	List.call(this, maxItems, compare); // super
+	if(aString === bString) {
+		result = 0;
+	} else if(aString > bString) {
+		result = 1;
+	} else {
+		result = -1;
+	}
+
+	return result;
+}
+
+function SortedList(maxItems, compare) {
+	List.call(this, maxItems, compare || defaultCompare); // super
 }
 
 (function() {
