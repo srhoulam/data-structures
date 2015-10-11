@@ -3,6 +3,20 @@
 var copy = require('deepcopy');
 
 var LinkedList = (function linkedListIIFE() {
+	function defaultCompare(a, b) {
+		// good default for unsorted list
+		var result;
+		if(a instanceof Object || b instanceof Object) {
+			result = JSON.stringify(a) === JSON.stringify(b);
+		} else {
+			result = a === b;
+		}
+
+		return result ?
+			0 :
+			1;
+	}
+
 	function LinkedList(compare) {
 		var globalObject;
 
@@ -18,19 +32,7 @@ var LinkedList = (function linkedListIIFE() {
 
 		if(!(compare instanceof Function)) {
 			if(compare === undefined) {
-				compare = function(a, b) {
-					// good default for unsorted list
-					var result;
-					if(a instanceof Object || b instanceof Object) {
-						result = JSON.stringify(a) === JSON.stringify(b);
-					} else {
-						result = a === b;
-					}
-
-					return result ?
-						0 :
-						1;
-				};
+				compare = defaultCompare;
 			} else {
 				throw new RangeError("LinkedList: unacceptable `compare` argument.");
 			}
