@@ -82,7 +82,7 @@ var SortedLinkedList = (function() {
 			if(comparison === 0) {
 				found = true;
 			} else if(comparison < 0) {
-				moreToSeach = false;
+				moreToSearch = false;
 			} else {
 				loc = loc.next;
 				moreToSearch = loc !== null;
