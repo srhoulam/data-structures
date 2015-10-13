@@ -69,14 +69,9 @@ var LinkedList = (function linkedListIIFE() {
 	LinkedList.prototype.getNext = function linkedListGetNext() {
 		var nextItem;
 
-		if(this.currentPos) {
+		if(this.currentPos !== null) {
 			nextItem = copy(this.currentPos.item);
-
-			if(this.currentPos.next) {
-				this.currentPos = this.currentPos.next;
-			} else {
-				this.reset();
-			}			
+			this.currentPos = this.currentPos.next;
 		} else {
 			nextItem = null;
 		}
