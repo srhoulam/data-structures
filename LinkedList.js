@@ -49,6 +49,20 @@ var LinkedList = (function linkedListIIFE() {
 	LinkedList.prototype.lengthIs = function linkedListLengthIs() {
 		return this.numItems;
 	};
+	// Nell Dale, chapter 5, exercise 14
+	LinkedList.prototype.dumbLengthIs = function linkedListDumbLengthIs() {
+		if(this.list === null) {
+			return 0;
+		}
+
+		var loc = this.list;
+
+		for(var length = 1; loc.next !== null; length++) {
+			loc = loc.next;
+		}
+
+		return length;
+	};
 	LinkedList.prototype.reset = function linkedListReset() {
 		this.currentPos = this.list;
 	};
