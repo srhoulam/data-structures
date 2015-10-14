@@ -103,7 +103,8 @@ var SortedLinkedList = (function() {
 
 		var currElem1 = list1.getNext(),
 			currElem2 = list2.getNext(),
-			currLoc = null;
+			currLoc = null,
+			temp = null;
 
 		var comparison = this.compare(currElem1, currElem2);
 
@@ -121,11 +122,21 @@ var SortedLinkedList = (function() {
 			comparison = this.compare(currElem1, currElem2);
 
 			if(currElem1 !== null && ((currElem2 === null) || comparison < 0)) {
-				currLoc.next = new ListNode(currElem1);
+				temp = currElem1;
 				currElem1 = list1.getNext();
+				if(!this.contains(temp)) {
+					currLoc.next = new ListNode(temp);
+				} else {
+					continue;
+				}
 			} else {
-				currLoc.next = new ListNode(currElem2);
+				temp = currElem2;
 				currElem2 = list2.getNext();
+				if(!this.contains(temp)) {
+					currLoc.next = new ListNode(temp);
+				} else {
+					continue;
+				}
 			}
 
 			currLoc = currLoc.next;
