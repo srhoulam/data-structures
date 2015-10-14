@@ -91,6 +91,46 @@ var SortedLinkedList = (function() {
 
 		return found;
 	}
+	/*	Nell Dale, chapter 5, exercise 26
+	 *	this method will OVERWRITE the list in its `this` pointer
+	 *	also, this method cannot merge lists created with
+	 *		`compare` methods incompatible with that of the list
+	 *		calling the method
+	 */
+	SortedLinkedList.prototype.merge = function sortedLinkedListMerge(list1, list2) {
+		list1.reset();
+		list2.reset();
+
+		var currElem1 = list1.getNext(),
+			currElem2 = list2.getNext(),
+			currLoc = null;
+
+		var comparison = this.compare(currElem1, currElem2);
+
+		if(comparison < 0) {
+			this.list = new ListNode(currElem1);
+			currElem1 = list1.getNext();
+		} else {
+			this.list = new ListNode(currElem2);
+			currElem2 = list2.getNext();
+		}
+
+		currLoc = this.list;
+
+		while(currElem1 !== null || currElem2 !== null) {
+			comparison = this.compare(currElem1, currElem2);
+
+			if(currElem1 !== null && ((currElem2 === null) || comparison < 0)) {
+				currLoc.next = new ListNode(currElem1);
+				currElem1 = list1.getNext();
+			} else {
+				currLoc.next = new ListNode(currElem2);
+				currElem2 = list2.getNext();
+			}
+
+			currLoc = currLoc.next;
+		}
+	};
 
 	return SortedLinkedList;
 })();
