@@ -171,5 +171,35 @@ describe("sorted linked list", function() {
 			expect(JSON.stringify(sl.getNext())).
 				toBe(JSON.stringify({a : 'g'}));
 		});
+		it("should merge without duplicates", function() {
+			var sl = new SortedList();
+			var l1 = new SortedList();
+			var l2 = new SortedList();
+
+			l1.insert({a : 'a'});
+			l1.insert({a : 'c'});
+			l1.insert({a : 'f'});
+			l1.insert({a : 'g'});
+
+			l2.insert({a : 'a'});
+			l2.insert({a : 'd'});
+			l2.insert({a : 'f'});
+
+			expect(sl.lengthIs()).toBe(0);
+
+			sl.merge(l1, l2);
+
+			sl.reset();
+			expect(JSON.stringify(sl.getNext())).
+				toBe(JSON.stringify({a : 'a'}));
+			expect(JSON.stringify(sl.getNext())).
+				toBe(JSON.stringify({a : 'c'}));
+			expect(JSON.stringify(sl.getNext())).
+				toBe(JSON.stringify({a : 'd'}));
+			expect(JSON.stringify(sl.getNext())).
+				toBe(JSON.stringify({a : 'f'}));
+			expect(JSON.stringify(sl.getNext())).
+				toBe(JSON.stringify({a : 'g'}));
+		});
 	});
 });
