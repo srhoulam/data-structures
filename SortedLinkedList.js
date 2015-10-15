@@ -11,20 +11,7 @@ var SortedLinkedList = (function() {
 	 *
 	 */
 
-	function ListNode(item) {
-		this.item = copy(item);
-		this.next = null;
-	}
-	ListNode.prototype = {
-		constructor : ListNode,
-
-		get next() {
-			return this._next;
-		},
-		set next(n) {
-			this._next = n;
-		}
-	};
+	var ListNode = require('./ListNode');
 
 	function defaultCompare(a, b) {
 		var result = null;
@@ -61,7 +48,7 @@ var SortedLinkedList = (function() {
 			}
 		}
 
-		var newItem = new ListNode(item);
+		var newItem = new ListNode(copy(item));
 		newItem.next = currLoc;
 
 		if(prevLoc === null) {

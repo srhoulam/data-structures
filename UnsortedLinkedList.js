@@ -11,20 +11,7 @@ var UnsortedLinkedList = (function unsortedLinkedListIIFE() {
 	 *
 	 */
 
-	function ListNode(item) {
-		this.item = copy(item);
-		this.next = null;
-	}
-	ListNode.prototype = {
-		constructor : ListNode,
-
-		get next() {
-			return this._next;
-		},
-		set next(n) {
-			this._next = n;
-		}
-	};
+	var ListNode = require('./ListNode');
 
 	function UnsortedLinkedList(compare) {
 		LinkedList.call(this, compare); //super
