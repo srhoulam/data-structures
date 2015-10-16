@@ -1,7 +1,12 @@
 'use strict';
 
-var SortedLinkedList = require('./SortedLinkedList');
+var LinkedList = require('./LinkedList');
+var ListNode = require('./ListNode');
 
-function CircularSortedLinkedList() {};
+function CircularSortedLinkedList() {
+	LinkedList.call(this);
+};
+
+CircularSortedLinkedList.prototype = new LinkedList();
 
 module.exports = CircularSortedLinkedList;
