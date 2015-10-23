@@ -4,18 +4,10 @@ var QueueErrors = require('./QueueErrors'),
 	UnderflowError = QueueErrors.Underflow,
 	OverflowError = QueueErrors.Overflow;
 
+var checkForNew = require('./checkForNew');
+
 function Queue(cap) {
-	var globalObject;
-
-	try {
-		globalObject = global;
-	} catch(e) {
-		globalObject = window;
-	}
-
-	if(this === globalObject) {
-		throw new SyntaxError("List: constructor called without the `new` keyword.");
-	}
+	checkForNew.call(this, "Queue");
 
 	this.capacity = cap,
 	this.array = new Array(this.capacity),

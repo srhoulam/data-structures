@@ -1,7 +1,7 @@
 'use strict';
 
 var copy = require('deepcopy');
-
+var checkForNew = require('./checkForNew');
 /**
  *
  *	For this generic ADT, we need flexibility in comparing
@@ -15,17 +15,7 @@ var copy = require('deepcopy');
  */
 
 function List(maxItems, compare) {
-	var globalObject;
-
-	try {
-		globalObject = global;
-	} catch(e) {
-		globalObject = window;
-	}
-
-	if(this === globalObject) {
-		throw new SyntaxError("List: constructor called without the `new` keyword.");
-	}
+	checkForNew.call(this, "List");
 
 	if(!(compare instanceof Function)) {
 		if(compare === undefined) {

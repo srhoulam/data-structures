@@ -1,6 +1,7 @@
 'use strict';
 
 var copy = require('deepcopy');
+var checkForNew = require('./checkForNew');
 
 function defaultCompare(a, b) {
 	// good default for unsorted list
@@ -17,17 +18,7 @@ function defaultCompare(a, b) {
 }
 
 function LinkedList(compare) {
-	var globalObject;
-
-	try {
-		globalObject = global;
-	} catch(e) {
-		globalObject = window;
-	}
-
-	if(this === globalObject) {
-		throw new SyntaxError("List: constructor called without the `new` keyword.");
-	}
+	checkForNew.call(this, "LinkedList");
 
 	if(!(compare instanceof Function)) {
 		if(compare === undefined) {

@@ -3,6 +3,8 @@
 var StackErrors = require('./StackErrors'),
 	UnderflowError = StackErrors.Underflow;
 
+var checkForNew = require('./checkForNew');
+
 function StackNode(item, next) {
 	this.item = item;
 	this.next = next || null;
@@ -19,17 +21,7 @@ StackNode.prototype = {
 };
 
 function LinkedStack() {
-	var globalObject;
-
-	try {
-		globalObject = global;
-	} catch(e) {
-		globalObject = window;
-	}
-
-	if(this === globalObject) {
-		throw new SyntaxError("List: constructor called without the `new` keyword.");
-	}
+	checkForNew.call(this, "LinkedStack");
 
 	this.top = null;
 }

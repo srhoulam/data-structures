@@ -4,18 +4,10 @@ var StackErrors = require('./StackErrors'),
 	UnderflowError = StackErrors.Underflow,
 	OverflowError = StackErrors.Overflow;
 
+var checkForNew = require('./checkForNew');
+
 function Stack(maxHeight) {
-	var globalObject;
-
-	try {
-		globalObject = global;
-	} catch(e) {
-		globalObject = window;
-	}
-
-	if(this === globalObject) {
-		throw new SyntaxError("Stack: constructor called without the `new` keyword.");
-	}
+	checkForNew.call(this, "Stack");
 
 	this.maxHeight = maxHeight || 100;
 	this.array = new Array(this.maxHeight);

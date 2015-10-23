@@ -3,6 +3,8 @@
 var QueueErrors = require('./QueueErrors'),
 	UnderflowError = QueueErrors.Underflow;
 
+var checkForNew = require('./checkForNew');
+
 function QueueNode(item) {
 	this.item = item;
 	this.next = null;
@@ -19,17 +21,7 @@ QueueNode.prototype = {
 };
 
 function CircularLinkedQueue() {
-	var globalObject;
-
-	try {
-		globalObject = global;
-	} catch(e) {
-		globalObject = window;
-	}
-
-	if(this === globalObject) {
-		throw new SyntaxError("List: constructor called without the `new` keyword.");
-	}
+	checkForNew.call(this, "CircularLinkedQueue");
 
 	this.rear = null;
 }
