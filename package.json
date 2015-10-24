@@ -2,11 +2,13 @@
   "name": "datastruct",
   "version": "1.0.0",
   "description": "My code from following along with Object-Oriented Data Structures by Nell Dale",
-  "main": "driver_SortedStringList.js",
+  "main": null,
   "dependencies": {
     "deepcopy": "^0.5.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "jasmine" : "^2.3.2"
+  },
   "scripts": {
     "test": "jasmine"
   },
