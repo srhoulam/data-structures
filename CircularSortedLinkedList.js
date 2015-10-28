@@ -24,6 +24,7 @@ function CircularSortedLinkedList(compare) {
 	LinkedList.call(this, compare || defaultCompare);
 }
 CircularSortedLinkedList.prototype = new LinkedList();
+CircularSortedLinkedList.prototype.constructor = CircularSortedLinkedList;
 CircularSortedLinkedList.prototype.reset = function circularSortedLinkedListReset() {
 	if(this.list === null) {
 		this.currentPos = this.list;

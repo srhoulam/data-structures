@@ -30,6 +30,7 @@ function SortedList(maxItems, compare) {
 	SortedList.prototype = new List(1, function(a, b) {
 		return Math.round(-1 + 2 * Math.random()); // useless!
 	});
+	SortedList.prototype.constructor = SortedList;
 
 	// private methods and attributes
 	// info. hiding achieved via closure

@@ -24,6 +24,7 @@ function SortedLinkedList(compare) {
 	LinkedList.call(this, compare || defaultCompare); //super
 }
 SortedLinkedList.prototype = new LinkedList();
+SortedLinkedList.prototype.constructor = SortedLinkedList;
 SortedLinkedList.prototype.insert = function sortedLinkedListInsert(item) {
 	var prevLoc = null;
 	var currLoc = this.list;

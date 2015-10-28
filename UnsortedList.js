@@ -11,6 +11,7 @@ function UnsortedList(maxItems, compare) {
 UnsortedList.prototype = new List(1, function(a, b) {
 	return Math.round(-1 + 2 * Math.random()); // useless!
 });
+UnsortedList.prototype.constructor = UnsortedList;
 
 UnsortedList.prototype.contains = function(item) {
 	var found = false;

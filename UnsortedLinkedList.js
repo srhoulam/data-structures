@@ -8,6 +8,7 @@ function UnsortedLinkedList(compare) {
 	LinkedList.call(this, compare); //super
 }
 UnsortedLinkedList.prototype = new LinkedList();
+UnsortedLinkedList.prototype.constructor = UnsortedLinkedList;
 UnsortedLinkedList.prototype.insert = function unsortedLinkedListInsert(item) {
 	var newItem = new ListNode(item);
 	newItem.next = this.list;
