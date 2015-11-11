@@ -158,4 +158,24 @@ describe("doubly linked list", function() {
             });
         }
     });
+
+    it("should allow traversal in both directions", function() {
+        var alphabet = 'abcdefghijklmnopqrstuvwxyz';
+        for(var index = 0; index < 26; index++) {
+            l.insert({
+                i : alphabet[index]
+            });
+        }
+        l.reset();
+        for(index = 0; index < 25; index++) {
+            expect(JSON.stringify(l.getNext())).toBe(JSON.stringify({
+                i : alphabet[index]
+            }));
+        }
+        for(;index >= 0; index--) {
+            expect(JSON.stringify(l.getPrev())).toBe(JSON.stringify({
+                i : alphabet[index]
+            }));
+        }
+    });
 });
