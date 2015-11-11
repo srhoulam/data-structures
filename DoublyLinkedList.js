@@ -83,6 +83,27 @@ DoublyLinkedList.prototype.insert = function dlListInsert(item) {
 
     this.numItems++;
 };
+DoublyLinkedList.prototype.contains = function(item) {
+    var loc = this.list;
+    var found = false;
+    var moreToSearch = loc !== null;
+
+    while(moreToSearch && !found) {
+        var comparison = this.compare(item, loc.item);
+        if(comparison === 0) {
+            found = true;
+        } else if(comparison < 0) {
+            moreToSearch = false;
+        } else {
+            loc = loc.next;
+            moreToSearch = loc !== null;
+        }
+    }
+
+    return found;
+};
+
+/* extraneous!
 DoublyLinkedList.prototype.delete = function dlListDelete(item) {
     if(this.numItems === 0) {
         return;
@@ -118,5 +139,5 @@ DoublyLinkedList.prototype.delete = function dlListDelete(item) {
         this.numItems--;
     }
 };
-
+*/
 module.exports = DoublyLinkedList;
