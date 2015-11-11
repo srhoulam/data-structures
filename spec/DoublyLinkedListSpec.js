@@ -91,6 +91,49 @@ describe("doubly linked list", function() {
         expect(l.contains('c')).toBe(false);
     });
 
+    it("should retrieve items", function() {
+        try {
+            expect(l.retrieve('a') !== false).toBe(false);
+        } catch(error) {
+            expect(error.message).toBe("LinkedList: retrieve attempted on empty list.");
+        }
+
+        l.insert('a');
+        expect(l.retrieve('a') !== false).toBe(true);
+        expect(l.retrieve('b') !== false).toBe(false);
+
+        l.insert('b');
+        expect(l.retrieve('a') !== false).toBe(true);
+        expect(l.retrieve('b') !== false).toBe(true);
+        expect(l.retrieve('c') !== false).toBe(false);
+
+        l.insert('c');
+        expect(l.retrieve('a') !== false).toBe(true);
+        expect(l.retrieve('b') !== false).toBe(true);
+        expect(l.retrieve('c') !== false).toBe(true);
+        expect(l.retrieve('d') !== false).toBe(false);
+
+        l.delete('a');
+        expect(l.retrieve('a') !== false).toBe(false);
+        expect(l.retrieve('b') !== false).toBe(true);
+        expect(l.retrieve('c') !== false).toBe(true);
+
+        l.delete('c');
+        expect(l.retrieve('a') !== false).toBe(false);
+        expect(l.retrieve('b') !== false).toBe(true);
+        expect(l.retrieve('c') !== false).toBe(false);
+
+        l.delete('b');
+        try {
+            expect(l.retrieve('a') !== false).toBe(false);
+            expect(l.retrieve('b') !== false).toBe(false);
+            expect(l.retrieve('c') !== false).toBe(false);
+        } catch(error) {
+            expect(error.message).toBe("LinkedList: retrieve attempted on empty list.");
+        }
+    });
+
+
     it("should keep track of its length", function() {
         for(var index = 0; index < 100; index++) {
             expect(l.lengthIs()).toBe(index);
