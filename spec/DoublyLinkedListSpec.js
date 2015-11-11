@@ -56,4 +56,63 @@ describe("doubly linked list", function() {
 
         expect(l.list).toBe(null);
     });
+
+    it("should determine if it contains an item", function() {
+        expect(l.contains('a')).toBe(false);
+
+        l.insert('a');
+        expect(l.contains('a')).toBe(true);
+        expect(l.contains('b')).toBe(false);
+
+        l.insert('b');
+        expect(l.contains('a')).toBe(true);
+        expect(l.contains('b')).toBe(true);
+        expect(l.contains('c')).toBe(false);
+
+        l.insert('c');
+        expect(l.contains('a')).toBe(true);
+        expect(l.contains('b')).toBe(true);
+        expect(l.contains('c')).toBe(true);
+        expect(l.contains('d')).toBe(false);
+
+        l.delete('a');
+        expect(l.contains('a')).toBe(false);
+        expect(l.contains('b')).toBe(true);
+        expect(l.contains('c')).toBe(true);
+
+        l.delete('c');
+        expect(l.contains('a')).toBe(false);
+        expect(l.contains('b')).toBe(true);
+        expect(l.contains('c')).toBe(false);
+
+        l.delete('b');
+        expect(l.contains('a')).toBe(false);
+        expect(l.contains('b')).toBe(false);
+        expect(l.contains('c')).toBe(false);
+    });
+
+    it("should keep track of its length", function() {
+        for(var index = 0; index < 100; index++) {
+            expect(l.lengthIs()).toBe(index);
+            l.insert({
+                i : index
+            });
+        }
+        for(index = 99; index >= 0; index--) {
+            expect(l.lengthIs()).toBe(index + 1);
+            l.delete({
+                i : index
+            });
+        }
+        expect(l.lengthIs()).toBe(0);
+    });
+
+    it("should never be full", function() {
+        for(var index = 0; index < 100; index++) {
+            expect(l.isFull()).toBe(false);
+            l.insert({
+                i : index
+            });
+        }
+    });
 });
