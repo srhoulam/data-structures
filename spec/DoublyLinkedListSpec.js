@@ -160,6 +160,17 @@ describe("doubly linked list", function() {
     });
 
     it("should allow traversal in both directions", function() {
+        /** NOTE
+         *
+         *  This test uses alphabetical characters rather than
+         *      numerical values for a quirk of the default
+         *      compare function.
+         *
+         *  Because any entity inserted into this object is
+         *      compared in string form, this means that
+         *      9 would be considered greater than 19, as
+         *      '9' would sort after '19'
+         */
         var alphabet = 'abcdefghijklmnopqrstuvwxyz';
         for(var index = 0; index < 26; index++) {
             l.insert({
