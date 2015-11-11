@@ -84,7 +84,39 @@ DoublyLinkedList.prototype.insert = function dlListInsert(item) {
     this.numItems++;
 };
 DoublyLinkedList.prototype.delete = function dlListDelete(item) {
-    ;
+    if(this.numItems === 0) {
+        return;
+    }
+
+    var location = this.list;
+
+    while(location !== null && this.compare(item, location.item) !== 0) {
+        // seek through the list
+        location = location.next;
+    }
+
+    if(location !== null) {
+        // remove item
+
+        if(location.next === location.prev) {
+            // delete a list of one element
+            this.list = null;
+        } else if(location === this.list) {
+            // delete from head of list
+            this.list = this.list.next;
+            this.list.prev = null;
+        } else {
+            // guard clause for end of list
+            if(location.next !== null) {
+                location.next.prev = location.prev;
+            }
+
+            location.prev.next = location.next;
+        }
+
+        // decrement `numItems`
+        this.numItems--;
+    }
 };
 
 module.exports = DoublyLinkedList;
