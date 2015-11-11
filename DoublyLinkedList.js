@@ -1,7 +1,6 @@
 'use strict';
 
 var copy = require('deepcopy');
-var checkForNew = require('./checkForNew');
 var LinkedList = require('./LinkedList');
 var DLNode = require('./DoublyLinkedNode');
 
