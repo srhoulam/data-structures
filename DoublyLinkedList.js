@@ -83,7 +83,7 @@ DoublyLinkedList.prototype.insert = function dlListInsert(item) {
 
     this.numItems++;
 };
-DoublyLinkedList.prototype.contains = function(item) {
+DoublyLinkedList.prototype.contains = function dlListContains(item) {
     var loc = this.list;
     var found = false;
     var moreToSearch = loc !== null;
@@ -101,6 +101,18 @@ DoublyLinkedList.prototype.contains = function(item) {
     }
 
     return found;
+};
+DoublyLinkedList.prototype.getPrev = function dlListGetPrev() {
+    var prevItem;
+
+    if(this.currentPos !== null) {
+        prevItem = copy(this.currentPos.item);
+        this.currentPos = this.currentPos.prev;
+    } else {
+        prevItem = null;
+    }
+
+    return prevItem;
 };
 
 /* extraneous!
@@ -140,4 +152,5 @@ DoublyLinkedList.prototype.delete = function dlListDelete(item) {
     }
 };
 */
+
 module.exports = DoublyLinkedList;
