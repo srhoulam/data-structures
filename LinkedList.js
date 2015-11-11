@@ -73,7 +73,7 @@ LinkedList.prototype.retrieve = function linkedListRetrieve(item) {
 		throw new Error("LinkedList: retrieve attempted on empty list.");
 	}
 
-	var location = this.link;
+	var location = this.list;
 	var found = false;
 
 	while(!found && location !== null) {
