@@ -4,6 +4,8 @@ var ALNode = require('./ArrayListNode');
 var checkForNew = require('./checkForNew');
 var copy = require('deepcopy');
 
+const NUL = -1;
+
 function defaultCompare(a, b) {
     // good default for unsorted list
     var result;
@@ -33,7 +35,7 @@ function ArrayLinkedList(length, compare) {
     this.maxLength = length > 0 ? length : 1;
     this.list = new Array(this.maxLength);
     this.numItems = 0;
-    this.first = -1;
+    this.first = NUL;
     this.currentPos = 0;
     this.compare = compare;
 
@@ -58,7 +60,7 @@ ArrayLinkedList.prototype.getNext = function alListGetNext() {
 };
 ArrayLinkedList.prototype.contains = function alListContains(item) {
     var currItem = this.list[this.first];
-    while(currItem.nextIndex !== -1 && this.compare(currItem.item, item) !== 0) {
+    while(currItem.nextIndex !== NUL && this.compare(currItem.item, item) !== 0) {
         currItem = this.list[currItem.nextIndex];
     }
     if(this.compare(currItem.item, item) === 0) {
@@ -69,7 +71,7 @@ ArrayLinkedList.prototype.contains = function alListContains(item) {
 };
 ArrayLinkedList.prototype.retrieve = function alListRetrieve(item) {
     var currItem = this.list[this.first];
-    while(currItem.nextIndex !== -1 && this.compare(currItem.item, item) !== 0) {
+    while(currItem.nextIndex !== NUL && this.compare(currItem.item, item) !== 0) {
         currItem = this.list[currItem.nextIndex];
     }
     if(this.compare(currItem.item, item) === 0) {
@@ -85,7 +87,7 @@ ArrayLinkedList.prototype.insert = function alListInsert(item) {
 
     var newItem = new ALNode(copy(item));
 
-    if(this.first === -1) {
+    if(this.first === NUL) {
         this.list[0] = newItem;
         this.first = 0;
     } else {
@@ -96,7 +98,7 @@ ArrayLinkedList.prototype.insert = function alListInsert(item) {
             }
         }
         var currItem = this.list[this.first];
-        while(currItem.nextIndex !== -1) {
+        while(currItem.nextIndex !== NUL) {
             currItem = this.list[currItem.nextIndex];
         }
 
@@ -108,7 +110,7 @@ ArrayLinkedList.prototype.insert = function alListInsert(item) {
 ArrayLinkedList.prototype.delete = function alListDelete(item) {
     var prevItem = null;
     var currItem = this.list[this.first];
-    while(currItem.nextIndex !== -1 && this.compare(currItem.item, item) !== 0) {
+    while(currItem.nextIndex !== NUL && this.compare(currItem.item, item) !== 0) {
         prevItem = currItem;
         currItem = this.list[currItem.nextIndex];
     }
