@@ -75,8 +75,14 @@ describe("unsorted array linked list", function() {
             }
         });
         
-        it("should not be full", function() {
+        it("should report when it's full", function() {
             expect(ul.isFull()).toBe(false);
+
+            for(var index = 0; index < size; index++) {
+                ul.insert({});
+            }
+
+            expect(ul.isFull()).toBe(true);
         });
     });
 });
