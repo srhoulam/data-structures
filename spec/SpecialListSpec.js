@@ -38,17 +38,18 @@ describe("special list", function() {
             l.resetForward();
             var values = [];
 
-            try {
-                for(var index = 0; index < size; index++) {
-                    values.push(l.getNext());
-                }
-            } catch(e) {
-                l.resetForward();
-                var match = values.reduce(function(pV, cV) {
-                    return pV && cV === l.getNext();
-                }, true);
-                expect(match).toBe(true);
+            for(var index = 0; index < size; index++) {
+                values.push(l.getNext());
+                expect(values[values.length - 1]).toBe(index);
             }
+
+            l.resetForward();
+
+            var match = values.reduce(function(pV, cV) {
+                return pV && cV === l.getNext();
+            }, true);
+
+            expect(match).toBe(true);
         });
     });
 
@@ -62,18 +63,18 @@ describe("special list", function() {
         it("", function() {
             l.resetBackward();
             var values = [];
-
-            try {
-                for(var index = 0; index < size; index++) {
-                    values.push(l.getPrev());
-                }
-            } catch(e) {
-                l.resetBackward();
-                var match = values.reduce(function(pV, cV) {
-                    return pV && cV === l.getPrev();
-                }, true);
-                expect(match).toBe(true);
+            for(var index = 0; index < size; index++) {
+                values.push(l.getPrev());
+                expect(values[values.length - 1]).toBe(index);
             }
+
+            l.resetBackward();
+
+            var match = values.reduce(function(pV, cV) {
+                return pV && cV === l.getPrev();
+            }, true);
+
+            expect(match).toBe(true);
         });
     });
 });

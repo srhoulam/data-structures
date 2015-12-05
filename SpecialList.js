@@ -11,8 +11,8 @@ function SpecialList() {
     this.front = null;
     this.rear = null;
     this.numItems = 0;
-    this.fPos = 0;
-    this.rPos = 0;
+    this.fPos = null;
+    this.rPos = null;
 }
 //  methods needed:
 //      lengthIs,
@@ -30,13 +30,23 @@ SpecialList.prototype.resetBackward = function sListResetB() {
 //      getNext,
 SpecialList.prototype.getNext = function sListGetNext() {
     var result = this.fPos;
-    this.fPos = this.fPos.next;
+
+    if(result !== null) {
+        this.fPos = this.fPos.next;
+        result = result.item;
+    }
+
     return result;
 };
 //      getPrev,
 SpecialList.prototype.getPrev = function sListGetPrev() {
     var result = this.rPos;
-    this.rPos = this.rPos.prev;
+
+    if(result !== null) {
+        this.rPos = this.rPos.prev;
+        result = result.item;
+    }
+
     return result;
 };
 //      insertFront,
@@ -46,6 +56,8 @@ SpecialList.prototype.insertFront = function sListInsFront(item) {
 
     if(this.numItems === 0) {
         this.rear = newItem;
+    } else {
+        this.front.prev = newItem;
     }
 
     this.front = newItem;
@@ -58,6 +70,8 @@ SpecialList.prototype.insertRear = function sListInsRear(item) {
 
     if(this.numItems === 0) {
         this.front = newItem;
+    } else {
+        this.rear.next = newItem;
     }
 
     this.rear = newItem;
