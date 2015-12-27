@@ -38,7 +38,7 @@ function addLists(greater, lesser) {
     var result = new DigitList();
     var carry = 0;
 }
-function subtractLists(list1, list2) {}
+function subtractLists(greater, lesser) {}
 function greaterList(list1, list2) {
     //  PRECONDITION: no leading zeros in passed-in DigitList
     //  NOTE: ignores sign!
