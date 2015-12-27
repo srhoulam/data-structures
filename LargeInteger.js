@@ -37,6 +37,34 @@ LargeInt.prototype.toString = function lgIntToString() {
 function addLists(greater, lesser) {
     var result = new DigitList();
     var carry = 0;
+    var lesserLength = lesser.lengthIs();
+    var greaterLength = greater.lengthIs();
+
+    greater.resetBackward();
+    lesser.resetBackward();
+
+    for(var count = 0; count < lesserLength; count++) {
+        let digit1 = greater.getPrev();
+        let digit2 = lesser.getPrev();
+
+        let temp = digit1 + digit2 + carry;
+        carry = Math.floor(temp / 10);
+
+        result.insertFront(temp % 10);
+    }
+    for(count = lesserLength; count < greaterLength; count++) {
+        let digit = greater.getPrev();
+
+        let temp = digit + carry;
+        carry = Math.floor(temp / 10);
+
+        result.insertFront(temp % 10);
+    }
+    if(count !== 0) {
+        result.insertFront(count);
+    }
+
+    return result;
 }
 function subtractLists(greater, lesser) {}
 function greaterList(list1, list2) {
