@@ -35,11 +35,11 @@ LargeInt.prototype.toString = function lgIntToString() {
 
 //  Private methods
 function addLists(list1, list2) {
-    ;
+    
 }
 function subtractLists(list1, list2) {}
 function greaterList(list1, list2) {
-    //  PRECONDITION: no leading zeros in passed-in SpecialLists
+    //  PRECONDITION: no leading zeros in passed-in DigitList
     //  NOTE: ignores sign!
     //  actually compare the digits
     //  check number of digits
