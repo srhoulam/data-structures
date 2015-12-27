@@ -9,7 +9,7 @@ function LargeInt() {
     this.sign = PLUS;
     this.digits = new DigitList();
 }
-// Instance methods
+//  Instance methods
 LargeInt.prototype.setNegative = function lgIntSetNeg() {
     this.sign = MINUS;
 };
@@ -32,20 +32,80 @@ LargeInt.prototype.toString = function lgIntToString() {
 
     return string;
 };
-// Static (class) methods
+//  Static (class) methods
 LargeInt.addLists = function lgIntAdd() {};
 LargeInt.subtractLists = function lgIntSub() {};
 LargeInt.greaterList = function lgIntGreater(lint1, lint2) {
     if(lint1.sign ^ lint2.sign) { // if signs don't match
         return lint1.sign === PLUS ? lint1 : lint2;
     } else {
-        // actually compare the digits
-        // first, compare the length
-        // before that, branch on the (common) sign
+        //  actually compare the digits
         if(lint1.sign === PLUS) {
-            // both are positive
+            //  both are positive
+            //  check number of digits
+            if(lint1.digits.lengthIs() === lint2.digits.lengthIs()) {
+                //  actually compare the digits
+                lint1.resetForward();
+                lint2.resetForward();
+                let currentDigit1 = lint1.getNext();
+                let currentDigit2 = lint2.getNext();
+
+                //  need only check the current digit of one list
+                //      to know we've reached the end
+                while(currentDigit1 !== null) {
+                    if(currentDigit1 === currentDigit2) {
+                        // check next digit
+                        currentDigit1 = lint1.getNext();
+                        currentDigit2 = lint2.getNext();
+                        continue;
+                    } else if(currentDigit1 > currentDigit2) {
+                        return lint1;
+                    } else {
+                        return lint2;
+                    }
+                }
+
+                //  numbers are equal
+                return false;
+            } else {
+                //  assume leading digits are nonzero
+                return lint1.digits.lengthIs() > lint2.digits.lengthIs() ?
+                    lint1 :
+                    lint2;
+            }
         } else {
-            // both are negative
+            //  both are negative
+            //  check number of digits
+            if(lint1.digits.lengthIs() === lint2.digits.lengthIs()) {
+                //  actually compare the digits
+                lint1.resetForward();
+                lint2.resetForward();
+                let currentDigit1 = lint1.getNext();
+                let currentDigit2 = lint2.getNext();
+
+                //  need only check the current digit of one list
+                //      to know we've reached the end
+                while(currentDigit1 !== null) {
+                    if(currentDigit1 === currentDigit2) {
+                        // check next digit
+                        currentDigit1 = lint1.getNext();
+                        currentDigit2 = lint2.getNext();
+                        continue;
+                    } else if(currentDigit1 > currentDigit2) {
+                        return false;
+                    } else {
+                        return true;
+                    }
+                }
+
+                //  numbers are equal
+                return false;
+            } else {
+                //  assume leading digits are nonzero
+                return lint1.digits.lengthIs() > lint2.digits.lengthIs() ?
+                    false :
+                    true;
+            }
         }
     }
 };
