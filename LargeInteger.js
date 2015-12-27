@@ -36,7 +36,9 @@ LargeInt.prototype.toString = function lgIntToString() {
 LargeInt.addLists = function lgIntAdd() {};
 LargeInt.subtractLists = function lgIntSub() {};
 LargeInt.greaterList = function lgIntGreater(lint1, lint2) {
-    if(lint1.sign ^ lint2.sign) { // if signs don't match
+    //  PRECONDITION: no leading zeros in passed-in LargeInts
+    if(lint1.sign ^ lint2.sign) { 
+        //  if signs don't match
         return lint1.sign === PLUS ? lint1 : lint2;
     } else {
         //  actually compare the digits
