@@ -39,7 +39,7 @@ LargeInt.greaterList = function lgIntGreater(lint1, lint2) {
     //  PRECONDITION: no leading zeros in passed-in LargeInts
     if(lint1.sign ^ lint2.sign) { 
         //  if signs don't match
-        return lint1.sign === PLUS ? lint1 : lint2;
+        return lint1.sign === PLUS ? true : false;
     } else {
         //  actually compare the digits
         if(lint1.sign === PLUS) {
