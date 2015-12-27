@@ -61,9 +61,9 @@ LargeInt.greaterList = function lgIntGreater(lint1, lint2) {
                         currentDigit2 = lint2.getNext();
                         continue;
                     } else if(currentDigit1 > currentDigit2) {
-                        return lint1;
+                        return true;
                     } else {
-                        return lint2;
+                        return false;
                     }
                 }
 
@@ -72,8 +72,8 @@ LargeInt.greaterList = function lgIntGreater(lint1, lint2) {
             } else {
                 //  assume leading digits are nonzero
                 return lint1.digits.lengthIs() > lint2.digits.lengthIs() ?
-                    lint1 :
-                    lint2;
+                    true :
+                    false;
             }
         } else {
             //  both are negative
