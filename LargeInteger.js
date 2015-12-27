@@ -66,7 +66,53 @@ function addLists(greater, lesser) {
 
     return result;
 }
-function subtractLists(greater, lesser) {}
+function subtractLists(greater, lesser) {
+    var result = new DigitList();
+    var carry = 0;
+    var lesserLength = lesser.lengthIs();
+    var greaterLength = greater.lengthIs();
+
+    greater.resetBackward();
+    lesser.resetBackward();
+
+    for(var count = 0; count < lesserLength; count++) {
+        let digit1 = greater.getPrev();
+        let digit2 = lesser.getPrev();
+
+        let temp = 0;
+
+        if(digit1 >= digit2) {
+            //  regular, old-fashioned subtraction
+            temp = digit1 - digit2 + carry;
+            carry = 0;
+        } else {
+            //  subtraction using a "borrow" (negative carry)
+            temp = 10 + digit1 - digit2 + carry;
+            carry = -1;
+        }
+
+        result.insertFront(temp);
+    }
+    for(count = lesserLength; count < greaterLength; count++) {
+        let digit = greater.getPrev();
+
+        if(carry !== 0) {
+            //  eventually, this condition will be met under the assumption
+            //      that DigitLists do not have leading digits of zero
+            if(digit !== 0) {
+                digit -= 1;
+                carry = 0;
+            } else {
+                digit = 9;
+                carry = -1;
+            }
+        }
+
+        result.insertFront(digit);
+    }
+
+    return result;
+}
 function greaterList(list1, list2) {
     //  PRECONDITION: no leading zeros in passed-in DigitList
     //  NOTE: ignores sign!
