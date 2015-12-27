@@ -34,8 +34,9 @@ LargeInt.prototype.toString = function lgIntToString() {
 };
 
 //  Private methods
-function addLists(list1, list2) {
-    
+function addLists(greater, lesser) {
+    var result = new DigitList();
+    var carry = 0;
 }
 function subtractLists(list1, list2) {}
 function greaterList(list1, list2) {
