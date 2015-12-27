@@ -32,11 +32,10 @@ LargeInt.prototype.toString = function lgIntToString() {
 
     return string;
 };
-//  Static (class) methods
-LargeInt.addLists = function lgIntAdd() {};
-LargeInt.subtractLists = function lgIntSub() {};
 
 //  Private methods
+function addLists(list1, list2) {}
+function subtractLists(list1, list2) {}
 function greaterList(list1, list2) {
     //  PRECONDITION: no leading zeros in passed-in LargeInts
     //  NOTE: ignores sign!
