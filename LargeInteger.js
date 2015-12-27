@@ -50,14 +50,11 @@ function greaterList(list1, list2) {
         let currentDigit1 = list1.getNext();
         let currentDigit2 = list2.getNext();
 
-        //  need only check the current digit of one list
-        //      to know we've reached the end
-        while(currentDigit1 !== null) {
+        for(var count = 0; count < length; count++) {
             if(currentDigit1 === currentDigit2) {
                 // check next digit
                 currentDigit1 = list1.getNext();
                 currentDigit2 = list2.getNext();
-                continue;
             } else if(currentDigit1 > currentDigit2) {
                 return true;
             } else {
