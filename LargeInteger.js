@@ -149,7 +149,7 @@ function greaterList(list1, list2) {
             true :
             false;
     }
-}result['set' + (lint1.sign === PLUS ? 'Positive' : 'Negative')]();
+}
 
 // Public Static methods
 LargeInt.add = function lgIntAdd(lint1, lint2) {
@@ -160,8 +160,15 @@ LargeInt.add = function lgIntAdd(lint1, lint2) {
         //  set common sign on `result`
         result['set' + (lint1.sign === PLUS ? 'Positive' : 'Negative')]();
 
-        //  set `result`'s digits to the sum of the two integers' digits
-        result.digits = addLists(lint1.digits, lint2.digits);
+        if(greaterList(lint1.digits, lint2.digits)) {
+            //  |lint1| > |lint2|
+            //  set `result`'s digits to the sum of the two integers' digits
+            result.digits = addLists(lint1.digits, lint2.digits);
+        } else {
+            //  |lint1| <= |lint2|
+            //  set `result`'s digits to the sum of the two integers' digits
+            result.digits = addLists(lint2.digits, lint1.digits);
+        }
     } else {
         //  signs differ
 
@@ -169,13 +176,16 @@ LargeInt.add = function lgIntAdd(lint1, lint2) {
             //  |lint1| > |lint2|
             //  set sign
             result['set' + (lint1.sign === PLUS ? 'Positive' : 'Negative')]();
+            result.digits = subtractLists(lint1.digits, lint2.digits);
         } else {
             //  |lint1| <= |lint2|
             //  set sign
             result['set' + (lint2.sign === PLUS ? 'Positive' : 'Negative')]();
+            result.digits = subtractLists(lint2.digits, lint1.digits);
         }
-
     }
+
+    return result;
 };
 
 module.exports = LargeInt;
