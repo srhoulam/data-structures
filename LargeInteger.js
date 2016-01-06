@@ -9,6 +9,7 @@ function LargeInt() {
     this.sign = PLUS;
     this.digits = new DigitList();
 }
+
 //  Instance methods
 LargeInt.prototype.setNegative = function lgIntSetNeg() {
     this.sign = MINUS;
@@ -33,7 +34,7 @@ LargeInt.prototype.toString = function lgIntToString() {
     return string;
 };
 
-//  Private methods
+//  Private static methods
 function addLists(greater, lesser) {
     var result = new DigitList();
     var carry = 0;
@@ -115,7 +116,9 @@ function subtractLists(greater, lesser) {
 }
 function greaterList(list1, list2) {
     //  PRECONDITION: no leading zeros in passed-in DigitList
-    //  NOTE: ignores sign!
+    //  PURPOSE: test whether |list1| > |list2|,
+    //      where |*| is the absolute value operator
+
     //  actually compare the digits
     //  check number of digits
     if(list1.lengthIs() === list2.lengthIs()) {
@@ -146,6 +149,33 @@ function greaterList(list1, list2) {
             true :
             false;
     }
-}
+}result['set' + (lint1.sign === PLUS ? 'Positive' : 'Negative')]();
+
+// Public Static methods
+LargeInt.add = function lgIntAdd(lint1, lint2) {
+    var result = new LargeInt();
+
+    if(lint1.sign === lint2.sign) {
+        //  signs are the same
+        //  set common sign on `result`
+        result['set' + (lint1.sign === PLUS ? 'Positive' : 'Negative')]();
+
+        //  set `result`'s digits to the sum of the two integers' digits
+        result.digits = addLists(lint1.digits, lint2.digits);
+    } else {
+        //  signs differ
+
+        if(greaterList(lint1.digits, lint2.digits)) {
+            //  |lint1| > |lint2|
+            //  set sign
+            result['set' + (lint1.sign === PLUS ? 'Positive' : 'Negative')]();
+        } else {
+            //  |lint1| <= |lint2|
+            //  set sign
+            result['set' + (lint2.sign === PLUS ? 'Positive' : 'Negative')]();
+        }
+
+    }
+};
 
 module.exports = LargeInt;
