@@ -187,5 +187,19 @@ LargeInt.add = function lgIntAdd(lint1, lint2) {
 
     return result;
 };
+LargeInt.subtract = function lgIntSub(lint1, lint2) {
+    // create additive inverse of `lint2`
+    var invertedLint2 = new LargeInt();
+    lint2.sign === PLUS ? invertedLint2.setNegative() : invertedLint2.setPositive();
+
+    lint2.digits.resetForward();
+    var length2 = lint2.digits.lengthIs();
+
+    for(var index = 0; index <= length2; index++) {
+        invertedLint2.digits.insertRear(lint1.digits.getNext());
+    }
+
+    return LargeInt.add(lint1, invertedLint2);
+};
 
 module.exports = LargeInt;
