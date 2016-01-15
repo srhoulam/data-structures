@@ -132,15 +132,12 @@ CircularSortedLinkedList.prototype.printReverse = function csllPrintReverse() {
 // closest thing available to a copy constructor (ch6ex2)
 CircularSortedLinkedList.copy = function csllCopy(list) {
     var result = new CircularSortedLinkedList(list.compare);
-    var nextItem;
+    var length = list.lengthIs();
 
     list.reset();
-    nextItem = list.getNext();
 
-    while(!result.contains(nextItem)) {
-        result.insert(nextItem);
-
-        nextItem = list.getNext();
+    for(var count = 0; count < length; count++) {
+        result.insert(list.getNext());
     }
 
     return result;
