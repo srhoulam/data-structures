@@ -79,7 +79,6 @@ CircularSortedLinkedList.prototype.delete = function circularSortedLinkedListDel
 
     this.numItems--;
 };
-
 CircularSortedLinkedList.prototype.insert = function circularSortedLinkedListInsert(item) {
     var newItem = new ListNode(copy(item));
 
@@ -112,6 +111,22 @@ CircularSortedLinkedList.prototype.insert = function circularSortedLinkedListIns
     }
 
     this.numItems++;
+};
+// closest thing available to a copy constructor (ch6ex2)
+CircularSortedLinkedList.copy = function csllCopy(list) {
+    var result = new CircularSortedLinkedList(list.compare);
+    var nextItem;
+
+    list.reset();
+    nextItem = list.getNext();
+
+    while(!result.contains(nextItem)) {
+        result.insert(nextItem);
+
+        nextItem = list.getNext();
+    }
+
+    return result;
 };
 
 module.exports = CircularSortedLinkedList;
