@@ -191,11 +191,11 @@ LargeInt.subtract = function lgIntSub(lint1, lint2) {
     var invertedLint2 = new LargeInt();
     lint2.sign === PLUS ? invertedLint2.setNegative() : invertedLint2.setPositive();
 
-    lint2.digits.resetForward();
+    lint2.digits.resetBackward();
     var length2 = lint2.digits.lengthIs();
 
     for(var index = 0; index <= length2; index++) {
-        invertedLint2.digits.insertRear(lint1.digits.getNext());
+        invertedLint2.digits.insertFront(lint2.digits.getPrev());
     }
 
     return LargeInt.add(lint1, invertedLint2);
