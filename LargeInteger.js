@@ -82,7 +82,7 @@ function subtractLists(greater, lesser) {
 
         let temp = 0;
 
-        if(digit1 >= digit2) {
+        if(digit1 + carry >= digit2) {
             //  regular, old-fashioned subtraction
             temp = digit1 - digit2 + carry;
             carry = 0;
@@ -101,11 +101,10 @@ function subtractLists(greater, lesser) {
             //  eventually, this condition will be met under the assumption
             //      that DigitLists do not have leading digits of zero
             if(digit !== 0) {
-                digit -= 1;
+                digit += carry;
                 carry = 0;
             } else {
                 digit = 9;
-                carry = -1;
             }
         }
 
