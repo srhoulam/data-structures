@@ -194,7 +194,7 @@ LargeInt.subtract = function lgIntSub(lint1, lint2) {
     lint2.digits.resetBackward();
     var length2 = lint2.digits.lengthIs();
 
-    for(var index = 0; index <= length2; index++) {
+    for(var index = 0; index < length2; index++) {
         invertedLint2.digits.insertFront(lint2.digits.getPrev());
     }
 
