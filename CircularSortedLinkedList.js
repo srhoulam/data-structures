@@ -4,6 +4,8 @@ var copy = require('deepcopy');
 var LinkedList = require('./LinkedList');
 var ListNode = require('./ListNode');
 
+var Stack = require('./LinkedStack');
+
 function defaultCompare(a, b) {
     var result = null;
     var aString = JSON.stringify(a),
@@ -111,6 +113,21 @@ CircularSortedLinkedList.prototype.insert = function circularSortedLinkedListIns
     }
 
     this.numItems++;
+};
+// ch6ex2
+CircularSortedLinkedList.prototype.printReverse = function csllPrintReverse() {
+    var s = new Stack();
+    var length = this.lengthIs();
+
+    this.reset();
+
+    for(var count = 0; count < length; count++) {
+        s.push(this.getNext());
+    }
+
+    for(count = 0; count < length; count++) {
+        console.log(s.pop());
+    }
 };
 // closest thing available to a copy constructor (ch6ex2)
 CircularSortedLinkedList.copy = function csllCopy(list) {
