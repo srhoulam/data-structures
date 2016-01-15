@@ -53,7 +53,7 @@ function addLists(greater, lesser) {
 
         result.insertFront(temp % 10);
     }
-    for(count = lesserLength; count < greaterLength; count++) {
+    for(; count < greaterLength; count++) {
         let digit = greater.getPrev();
 
         let temp = digit + carry;
@@ -61,8 +61,8 @@ function addLists(greater, lesser) {
 
         result.insertFront(temp % 10);
     }
-    if(count !== 0) {
-        result.insertFront(count);
+    if(carry !== 0) {
+        result.insertFront(carry);
     }
 
     return result;
@@ -94,7 +94,7 @@ function subtractLists(greater, lesser) {
 
         result.insertFront(temp);
     }
-    for(count = lesserLength; count < greaterLength; count++) {
+    for(; count < greaterLength; count++) {
         let digit = greater.getPrev();
 
         if(carry !== 0) {
