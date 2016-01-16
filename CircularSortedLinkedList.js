@@ -114,7 +114,7 @@ CircularSortedLinkedList.prototype.insert = function circularSortedLinkedListIns
 
     this.numItems++;
 };
-// ch6ex2
+// ch6ex4
 CircularSortedLinkedList.prototype.printReverse = function csllPrintReverse() {
     var s = new Stack();
     var length = this.lengthIs();
