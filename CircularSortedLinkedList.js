@@ -117,7 +117,7 @@ CircularSortedLinkedList.prototype.insert = function circularSortedLinkedListIns
 // ch6ex4
 CircularSortedLinkedList.prototype.printReverse = function csllPrintReverse() {
     var s = new Stack();
-    var length = this.lengthIs();
+    var length = this.numItems;
 
     this.reset();
 
@@ -132,7 +132,7 @@ CircularSortedLinkedList.prototype.printReverse = function csllPrintReverse() {
 // closest thing available to a copy constructor (ch6ex2)
 CircularSortedLinkedList.copy = function csllCopy(list) {
     var result = new CircularSortedLinkedList(list.compare);
-    var length = list.lengthIs();
+    var length = list.numItems;
 
     list.reset();
 
