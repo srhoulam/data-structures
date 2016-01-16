@@ -97,5 +97,19 @@ SortedList.prototype.contains = function(item) {
         false :
         true;
 };
+// ch6ex5b
+SortedList.prototype.inBetween = function(item) {
+    var length = this.numItems;
+
+    this.reset();
+    var first = this.getNext();
+    for(var count = 0; count < length - 2; count++) {
+        this.getNext();
+    }
+    var last = this.getNext();
+
+    return this.compare(first, item) === -1 &&
+        this.compare(last, item) === 1;
+};
 
 module.exports = SortedList;
