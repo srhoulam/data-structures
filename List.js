@@ -52,6 +52,7 @@ List.prototype.getNext = function() {
 function defaultCompare(a, b) {
     // good default for unsorted list
     var result;
+
     if(a instanceof Object || b instanceof Object) {
         let strA = JSON.stringify(a);
         let strB = JSON.stringify(b);
