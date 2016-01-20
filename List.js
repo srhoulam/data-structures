@@ -53,14 +53,27 @@ function defaultCompare(a, b) {
     // good default for unsorted list
     var result;
     if(a instanceof Object || b instanceof Object) {
-        result = JSON.stringify(a) === JSON.stringify(b);
+        let strA = JSON.stringify(a);
+        let strB = JSON.stringify(b);
+
+        if(strA === strB) {
+            result = 0;
+        } else if(strA > strB) {
+            result = 1;
+        } else {
+            result = -1;
+        }
     } else {
-        result = a === b;
+        if(a === b) {
+            result = 0;
+        } else if(a > b) {
+            result = 1;
+        } else {
+            result = -1;
+        }
     }
 
-    return result ?
-        0 :
-        1;
+    return result;
 }
 
 /**
