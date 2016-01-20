@@ -50,7 +50,7 @@ SortedLinkedList.prototype.insert = function sortedLinkedListInsert(item) {
     }
 
     this.numItems++;
-}
+};
 SortedLinkedList.prototype.contains = function sortedLinkedListContains(item) {
     var loc = this.list;
     var found = false;
@@ -69,7 +69,7 @@ SortedLinkedList.prototype.contains = function sortedLinkedListContains(item) {
     }
 
     return found;
-}
+};
 /*  Nell Dale, chapter 5, exercise 26
  *  this method will OVERWRITE the list in its `this` pointer
  *  also, this method cannot merge lists created with
@@ -120,6 +120,19 @@ SortedLinkedList.prototype.merge = function sortedLinkedListMerge(list1, list2) 
 
         currLoc = currLoc.next;
     }
+};
+// ch6ex5c
+SortedLinkedList.prototype.inBetween = function(item) {
+    var length = this.numItems;
+
+    var first = this.list;
+    var last = first.next;
+    for(var count = 1; count < length - 1; count++) {
+        last = last.next;
+    }
+
+    return this.compare(first.item, item) === -1 &&
+        this.compare(last.item, item) === 1;
 };
 
 module.exports = SortedLinkedList;
