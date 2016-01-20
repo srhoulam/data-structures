@@ -99,8 +99,8 @@ SortedList.prototype.contains = function(item) {
 };
 // ch6ex5b
 SortedList.prototype.inBetween = function(item) {
-    var first = this.list[0];
-    var last = this.list[this.numItems];
+    var first = this.array[0];
+    var last = this.array[this.numItems - 1];
 
     return this.compare(first, item) === -1 &&
         this.compare(last, item) === 1;
