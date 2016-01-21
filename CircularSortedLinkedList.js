@@ -119,13 +119,15 @@ CircularSortedLinkedList.prototype.printReverse = function csllPrintReverse() {
     var s = new Stack();
     var length = this.numItems;
 
-    this.reset();
+    var currItem = this.list.next;
+
+    while(currItem !== this.list) {
+        s.push(currItem.item);
+        currItem = currItem.next;
+    }
+    s.push(currItem.item);
 
     for(var count = 0; count < length; count++) {
-        s.push(this.getNext());
-    }
-
-    for(count = 0; count < length; count++) {
         console.log(s.pop());
     }
 };
