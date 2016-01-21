@@ -142,5 +142,13 @@ CircularSortedLinkedList.copy = function csllCopy(list) {
 
     return result;
 };
+// ch6ex5d
+CircularSortedLinkedList.prototype.inBetween = function(item) {
+    var last = this.list;
+    var first = last.next;
+
+    return this.compare(first.item, item) === -1 &&
+        this.compare(last.item, item) === 1;
+};
 
 module.exports = CircularSortedLinkedList;
