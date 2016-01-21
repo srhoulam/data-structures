@@ -145,7 +145,7 @@ CircularSortedLinkedList.copy = function csllCopy(list) {
     return result;
 };
 // ch6ex5d
-CircularSortedLinkedList.prototype.inBetween = function(item) {
+CircularSortedLinkedList.prototype.inBetween = function csllInBetween(item) {
     var last = this.list;
     var first = last.next;
 
